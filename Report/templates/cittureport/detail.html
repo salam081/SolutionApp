@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+ {% block title %} cittuReport {% endblock %} 
+ 
+{% block content %}
+<br><br><br><br>
+  <style>
+    .detail{
+        width: 80%;
+        background-color: rgb(240, 239, 239);
+        margin-left: 150px;
+        font-size: 20px;
+        font-family: 'Times New Roman';
+        padding: 30px;
+    }
+    .but{
+      text-align: center;
+    }
+    i{
+      float: right;
+    }
+    h5{
+      float: right;
+    }
+  </style>
+ <div class="detail">
+   {{object.report_type}} 
+  <h5> {{object.date_created}}</h5><br>
+   <hr>
+<h2>Introductions</h2>
+{{object.introductions}} <br>
+<h2>Achievement</h2>
+{{object.achievement}} <br> 
+
+<h2>Challenge</h2>
+{{object.challenge}} <br>
+<h2>Conclusion</h2>
+{{object.conclusion}} <br><br>
+<i>Sent by : {{ user.username }}</i>
+<div class="but">
+<a  href="{% url 'updatereport' object.id%}"><button class="btn btn-success">update</button></a> 
+<a  href="{% url 'report_history' object.id%}"><button class="btn btn-primary">View History</button></a> 
+
+</div>
+</div>
+{% endblock %}

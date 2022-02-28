@@ -1,0 +1,80 @@
+{% extends 'base.html' %} {% block title %} cittuReport {% endblock %} 
+{% block content %} 
+<br><br><br>
+  <a href="{% url 'collectreport' %}" target="_blank"><button class="btn btn-info">CollectReport</button></a>
+<h3><center><b> CITTU SUBUNIT REPORTS </b></center></h3>
+<table class="table table-striped table-bordered table-hover table-light">
+  <thead>
+    <tr> 
+      <th scope="col">S/N</th>
+      <th scope="col">Report Type</th>
+      <th scope="col">Date from</th>
+      <th scope="col">Sub Units</th>
+      <th scope="col">Date to</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for SubUnitReport in subunit %}
+      <tr>
+        <th scope="row">{{ forloop.counter }}</th>
+        <td><b>{{SubUnitReport.report_type}}</b></td>
+        <td><b>{{SubUnitReport.date_from }}</b></td>
+        <td>
+        {% for user in profile %}
+          {% if user.user.id == SubUnitReport.created_by.id %}
+          <b> {{ user.unit.units }}</b> 
+          {% endif%}
+        {% endfor %}  
+        </td> 
+        <td><b>{{SubUnitReport.date_to}}</b></td>
+        
+        <td>
+          {% if request.user.is_staff %}
+          <select class="form-select" onchange="redirectHandler(this.value, this.options[this.selectedIndex].getAttribute('side'))">
+            <option selected disabled>Choose Action</option>
+            <option value="{% url 'detailview' SubUnitReport.id%}" side="detailreport">
+              View report
+            </option>
+            <option value="{% url 'reportpdf' SubUnitReport.pk %}" side="pdf">
+              View as pdf
+            </option>
+            <option value="{% url 'deletereport' SubUnitReport.id%}" side="delete">
+              Delete
+            </option> 
+          </select>
+          {% else %}
+
+            {% if request.user == SubUnitReport.created_by %}
+            <select class="form-select" onchange="redirectHandler(this.value, this.options[this.selectedIndex].getAttribute('side'))">
+              <option selected disabled>Choose Action</option>
+              <option value="{% url 'detailview' SubUnitReport.id%}" side="detailreport">
+                View report
+              </option>
+              <option value="{% url 'reportpdf' SubUnitReport.pk %}" side="pdf">
+                View as pdf
+              </option>
+              <option value="{% url 'deletereport' SubUnitReport.id%}" side="delete">
+                Delete
+              </option> 
+            </select>
+            {% endif %}
+            {% endif %}
+        </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<script>
+  function redirectHandler(url, target) {
+    console.log(target)
+    if(target=="pdf"){
+      window.open(url, "_blank")
+    }else{
+      window.open(url, "_self")
+    }
+        
+  } 
+</script>
+{% endblock %}

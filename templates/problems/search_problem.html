@@ -1,0 +1,27 @@
+
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+<br><br><br>
+    
+{% if searched %}  
+       <br>
+       <ul>
+       {% for problem in problems %}
+       <ul class="list-group list-group-number">
+        <li class="list-group-item"><a href="{% url 'adopted_solution' id=problem.id %}">{{ problem.title }}</a> <br></li>
+      </ul>
+       {% empty %}
+         <h3 > No results for your search</h3> 
+       {% endfor %}
+       </ul>
+
+      {% else %}
+         <h1>  search for Problems ........</h1>
+{% endif %}
+        
+   
+{% endblock %}
+

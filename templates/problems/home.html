@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+    {% block content %}
+    <br><br><br><br><br>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <style>
+       body{
+         background-image: url('{% static "images/fmc.png"%}');
+         background-repeat: no-repeat;
+         background-position: center;
+         background-size: 400px;  
+       }
+      </style>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Home Page</title>
+    </head>
+    <body>
+      <h2 style="color: green;"><marquee behavior="" direction="margin-left">FEDERAL MEDICAL CENTER KEFFI</marquee></h2>
+       <br><br>
+        <img style="padding-top: 400px;"  src="">
+      
+    </body>
+    </html>
+{% endblock %}
+

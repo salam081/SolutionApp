@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block bgimg %}
+<style>
+   body{
+      background-image: url('');
+   }
+</style>
+{% endblock %}
+{% block content %}
+<br><br><br>
+
+<h2>Update Solution</h2>
+<form method="POST" class="row g-3 needs-validation" novalidate>{% csrf_token %}
+   <div class="col-md-12">
+     <label for="validationCustom01" class="form-label">Problem</label>
+     <input type="text" class="form-control" id="validationCustom01" value="{{obj.problem.title.title}}" readonly>
+     <div class="valid-feedback">
+     </div>
+   </div>
+   <div class="mb-3">
+      <label for="exampleFormControlTextarea1" class="form-label">Enter Solution</label>
+      <textarea class="form-control" placeholder="{{obj.solution}}" name="solution" id="exampleFormControlTextarea1" rows="3"></textarea>
+   <br>
+   <button class="btn btn-success" type="submit">Save Update </button>
+</form>
+</div>
+{% endblock %}
+

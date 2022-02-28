@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<br><br><br>
+<style>
+  .reform{
+    width: 80%;
+        background-color: rgb(230, 224, 224);
+        margin-left: 150px;
+        font-size: 20px;
+        padding: 30px;
+        color: black;
+        border-radius: 10px;
+  }
+</style>
+
+
+
+
+<div class="reform">
+
+<form method="POST" action="" class="row g-3">
+  {% csrf_token%}
+  <div class="col-md-4">
+    <label for="validationCustom04" class="form-label">Select Report Type</label>
+    <select class="form-select" name="report_type" required>
+      <option selected disabled value="">Choose...</option>
+      {% for i in report %}
+            <option value="{{i.id}}">{{i.title}}</option>
+      {% endfor %}
+      {{report.created_by}}
+    </select>
+    <div class="invalid-feedback">
+      Please select REPORT TYPE.
+    </div>
+  </div>
+  <div style="padding-top: 10px;" class="col-md-4">
+    <label for="floatingTextarea2">Date from</label>
+    <div class="form-floating">
+      <input type="date" name="date_from" id="date_from">
+    </div>
+  </div>
+  
+  <div style="padding-top: 10px;" class="col-md-4">
+    <label for="floatingTextarea2">Date To</label>
+    <div class="form-floating">
+      <input type="date" name="date_to" id="date_to">
+    </div>
+  </div>
+  <div class="col-md-12">
+    <label for="floatingTextarea2">Introduction :</label>
+    <div class="form-floating">
+      <textarea id="introductions" name="introductions"class="form-control" style="height: 100px" required></textarea>
+    </div>
+  </div>
+  <div class="col-md-12">
+    <label for="floatingTextarea2">Achievements :</label>
+    <div class="form-floating">
+      <textarea id="achievement" name="achievement" class="form-control"  style="height: 100px" required></textarea>
+    </div>
+  </div>
+  <div class="col-md-12">
+    <label for="floatingTextarea2">Challenge :</label>
+    <div class="form-floating">
+      <textarea id="challenge" name="challenge" class="form-control"  style="height: 100px" required></textarea>
+    </div>
+  </div>
+  <div class="col-md-12">
+    <label for="floatingTextarea2">Conclusion :</label>
+    <div class="form-floating">
+      <textarea id="conclusion" name="conclusion" class="form-control" style="height: 100px" required></textarea>
+    </div>
+  </div>
+  <div class="col-12">
+    <center>
+    <button style="width: 300px; " class="btn btn-primary" type="submit">Submit Report</button>
+  </center>
+  </div>
+</form>
+</div>
+{% endblock %}

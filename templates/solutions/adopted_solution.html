@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block bgimg %}
+<style>
+   body{
+      background-image: url('');
+   }
+</style>
+{% endblock %}
+
+{% block content %}
+<br><br><br>
+
+
+<h3>Solution List</h3>
+ <form action="" method="POST">{% csrf_token %}
+   
+  <div class="card">
+    <div class="card-header">
+      <strong>{{ problem.title }} ({{ problem.app.app_name }})  </strong>
+    </div>
+    <div class="card-body">
+      <blockquote class="blockquote mb-0">
+        {% for p in problem.solution_set.all %}
+        {% if p.problem %}
+        <footer class="blockquote-footer">{{ p.solution }} <cite title="">&nbsp; &nbsp;</cite></footer>
+        {% endif %}
+        {% endfor %}
+      </blockquote>
+    </div>
+  </div>
+  <br>
+  
+</form>
+{% endblock  %}

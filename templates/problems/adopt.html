@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<br><br><br>
+
+<form method="POST" action="">{% csrf_token %}
+    {% for p in problem %}
+    <h2>{{p.title.title}}</h2>
+<ul>{% for item in p.solution_set.all %}
+    <li>{{ item.solution }}</li>
+    {% endfor %}
+ </ul>
+ {% endfor %}
+<button class="btn btn-success">Adopt these Solutions</button>
+  <br><br> 
+</form> 
+{% endblock %}

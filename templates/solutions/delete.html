@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<br><br><br>
+<center><form action=""method="POST">
+{% csrf_token %}
+<h2>Are you sure you want to delete ?</h2>
+    <h3 ><i>"{{obj}}"</i></h3></p>
+<button style="background-color: green; font-size: x-large;  width: 150px; "><a style="text-decoration:none;color:white" href="{% url 'solution_list' %}"> Back</a></button>
+<input style="background-color: red; font-size: x-large;text-decoration: none; width: 150px; color:white"  type="submit" value="Delete">
+
+
+
+</form>
+</center>
+
+
+
+{% endblock %}

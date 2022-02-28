@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block bgimg %}
+<style>
+   body{
+      background-image: url('');
+   }
+</style>
+{% endblock %}
+{% block content %}
+<br><br><br>
+     <h2>Enter Solution</h2>
+    <form action="" method="POST">{% csrf_token %}
+      
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">App</label>
+        <input type="email" class="form-control" value="{{ problem.app.app_name }}" readonly>
+      </div>
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Problem Title</label>
+        <input type="email" class="form-control" value="{{ problem.title.title }} " readonly>
+      </div>
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Problem Description</label>
+        <input type="email" class="form-control" value="{{ problem.description }} " readonly>
+      </div>
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Location</label>
+        <input type="email" class="form-control" value="{{ problem.location.location }}" readonly>
+      </div>
+       <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label">Enter Solution</label>
+        <textarea class="form-control" name="solution" id="exampleFormControlTextarea1" rows="3"></textarea>
+      </div>
+      
+      <br>
+       <button class="btn btn-success">Submit Solution</button>
+       </form>
+{% endblock %}

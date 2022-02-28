@@ -1,0 +1,11 @@
+{% block content %}
+><form action=""method="POST">
+{% csrf_token %}
+
+<h3>this problem"<i style="color: green;"> {{ problem.title  }} </i>" had been reported and solutions provided</h3>
+<h3>would you like to view these sulotion?</h3>
+
+<button class="btn btn-success"><a href="{% url 'adopted_solution' id=problem.id %}">Yes, view solution</a></button>
+<button class="btn btn-primary"><a href="{% url 'problems' %}"> NO, thanks</a></button>
+</form>
+{% endblock %}

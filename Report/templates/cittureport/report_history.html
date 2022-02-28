@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<br><br><br>
+<style>
+    .con{
+        width: 80%;
+        background-color: whitesmoke;
+        margin-left: 150px;
+        font-size: 20px;
+        padding: 30px;
+    }
+    .previous{
+        width: 80%;
+        background-color: rgb(229, 226, 226);
+        margin-left: 150px;
+        font-size: 20px;
+        font-family: 'Times New Roman';
+        padding: 30px;
+    }
+    h1,h5{
+        text-align: center;
+        margin: 20px;
+    }
+    h6{
+        float: right;
+    }
+</style>
+
+
+<h1>CURRENT VERSION</h1>  
+<div class="con">
+        {{current.report_type}}
+    <hr>
+<b><h2> Introduction</h2></b>
+        {{current.introductions}}
+    <br>
+    <b><h2>Achievement</h2></b>
+        {{current.achievement}}
+    <br>
+   <b><h2>Challenge</h2></b>
+        {{current.challenge}}
+    <br>
+    <b><h2>Conclusion</h2></b>
+        {{current.conclusion}}
+     <br>
+     <hr>
+       
+</div>
+<br>
+<h1>PREVIOUS REPORT BY SUBUNIT</h1>
+<div class="previous">
+
+{% for item in history %}
+            {{item.report_type}}
+        <hr>
+        <h2>Introduction</h2>
+            {{item.introductions}}
+        
+        <h2>Achievement</h2>
+            {{item.achievement}}
+        
+        <h2>Challenge</h2>
+            {{item.challenge}}
+        
+        <h2>Conclusion</h2>
+            {{item.conclusion}}
+        <br>
+        <h5>Edited_by:
+            {{user.username}}
+        </h5>
+        <h5>Date_Edited :
+            {{item.date_updated}}
+        </h5>
+{% endfor %}
+<hr style="border: 1px solid black;">  
+</div>
+{% endblock %}

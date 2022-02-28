@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<br><br><br>
+<form method="POST" action=""class="row g-3 needs-validation" novalidate>
+  {% csrf_token%}
+  <div class="col-md-4">
+    <label for="validationCustom04" class="form-label">Report Type</label>
+    <select class="form-select" name="report_type" required>
+      <option disabled value="">Choose...</option>
+      {% for i in report_type %}
+            <option value="{{i.id}}" {% if i.id is report.report_type.id %} selected {% endif %}>{{i.title}}</option>
+      {% endfor %}
+    </select>
+    <div class="invalid-feedback">
+      Please select REPORT TYPE.
+    </div>
+  </div>
+  <div class="col-md-4">
+  </div>
+  <div class="col-md-4">
+  </div>
+  <div class="col-md-12">
+    <label for="floatingTextarea2">Introduction</label>
+    <div class="form-floating">
+    
+      <textarea id="introductions"  name="introductions"class="form-control" style="height: 100px">{{report.introductions}}</textarea>
+    </div>
+  </div>
+  <div class="col-md-12">
+    <label for="floatingTextarea2">Achievements</label>
+    <div class="form-floating">
+      <textarea id="achievement" name="achievement" class="form-control"  style="height: 100px">{{report.achievement}}</textarea>
+    </div>
+  </div>
+  <div class="col-md-12">
+    <label for="floatingTextarea2">Challenge</label>
+    <div class="form-floating">
+      <textarea id="challenge" name="challenge" class="form-control"  style="height: 100px">{{report.challenge}}</textarea>
+    </div>
+  </div>
+  <div class="col-md-12">
+    <label for="floatingTextarea2">Conclusion</label>
+    <div class="form-floating">
+      <textarea id="conclusion" name="conclusion" class="form-control" style="height: 100px">{{report.conclusion}}</textarea>
+    </div>
+  </div>
+  <div class="col-12">
+    <button class="btn btn-primary" type="submit">Submit Update</button>
+  </div>
+</form>
+  
+{% endblock %}

@@ -1,0 +1,105 @@
+
+<style>
+   body {font-family: Arial, Helvetica, sans-serif;}
+        form {border: 3px solid #f1f1f1;
+          width: 50%;
+          /* padding: 30px; */
+          background-color: rgb(148, 190, 151);
+        }
+  * {box-sizing: border-box}
+  body{
+    background-color: rgb(219, 216, 216);
+  }
+
+/* Add padding to containers */
+.container {
+  padding: 16px;
+  margin-left: 200px;
+}
+
+/* Full-width input fields */
+input[type=text], input[type=password] {
+  width: 600px;
+  padding: 10px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+  
+}
+
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Overwrite default styles of hr */
+hr {
+  border: 1px solid #60b472;
+  margin-bottom: 15px;
+  
+ 
+}
+
+/* Set a style for the submit/register button */
+.registerbtn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 600px;
+  opacity: 0.9;
+}
+
+.registerbtn:hover {
+  opacity:1;
+}
+
+/* Add a blue text color to links */
+a {
+  color: dodgerblue;
+}
+
+.container p{
+  padding: 5px;
+  margin-left: 300px;
+}
+
+</style>
+{% block content %}
+<center>
+<form action="" method="POST">{% csrf_token %}
+  
+    {% for message in messages %}
+   <p ><h2 style="background-color:red; color: white; width: 750px; text-align: center;">
+    {{message}}</h2></p>
+     {% endfor %}
+    <hr>
+    <label for=""><b>Firstname</b></label><br>
+    <input type="text" placeholder="Enter Firstname" name="first_name"  required><br>
+
+    <label for=""><b>Lastname</b></label><br>
+    <input type="text" placeholder="Enter Lastname" name="last_name"  required><br>
+
+    <label for=""><b>Username</b></label><br>
+    <input type="text" placeholder="Enter Username" name="username"  required><br>
+
+
+    <label for=""><b>Email</b></label><br>
+    <input type="text" placeholder="Enter Email" name="email"  required><br>
+
+    <label for=""><b>Password</b></label><br>
+    <input type="password" placeholder="Enter Password" name="password1"  required><br>
+
+    <label for=""><b>Confrim password</b></label><br>
+    <input type="password" placeholder="confrim password" name="password2"  required><br>
+  
+    <button type="submit"  class="registerbtn">Register</button><br>
+   <h2><p >Already have an account? <a href="{% url 'login' %}">Sign in</a>.</p></h2> 
+  </div>
+</form>
+</center>  
+
+{% endblock %}

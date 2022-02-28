@@ -1,0 +1,66 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <style>
+        body {font-family: Arial, Helvetica, sans-serif;}
+        form {border: 3px solid #f1f1f1;
+          width: 600px;
+          padding: 30px;
+          background-color: rgb(166, 212, 170);
+        }
+        body{
+          background-color: rgb(211, 207, 207);
+        }
+        input[type=text], input[type=password] {
+            width: 500px;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            box-sizing: border-box;
+        }
+        input[type=text]:focus, input[type=password]:focus {
+            background-color: #ddd;
+            outline: none;
+        }
+        
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 500px;
+            font-size: 25px; 
+        }
+        button:hover {
+            opacity: 0.8;
+        }
+        .bod{
+          padding: 100px;
+          margin-top: 50px;
+          margin: 40px;
+          font-size: 25px;
+        }
+        </style>
+
+      <title>Login</title>
+    </head>
+    <body>
+     <center>
+      <div class="bod">
+      <form method="POST" action="">{% csrf_token %}
+       
+          <input type="text" placeholder="Enter Username" name="username" required>
+          <br>
+          <input type="password" placeholder="Enter Password" name="password" required>
+          <br>  
+          <button type="submit">Login</button>
+          <br>
+          <p>Don't have an account?&nbsp;<a style="color: rgb(37, 14, 170);" href="{% url 'register' %}">Register here</a></p>
+      </form>
+        </di>
+       </center>
+     </body>
+     </html>

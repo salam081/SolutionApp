@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+<br><br><br>
+<h3>Solution List</h3>
+ <form action="" method="POST">{% csrf_token %}
+  {% for problem in problems %} 
+  {% for p in problem.solution_set.all|slice:"1" %}
+  {% if p.solution %} 
+  <div class="card">
+    <div class="card-header">
+      <strong>{{ problem.title }} ({{ problem.app.app_name }})</strong><button class="btn btn-success" style="float: right; "><a style="text-decoration: none; color: white;" href="{% url 'adopt_solutions' id=problem.id %}">Adopt</a></button>
+      {% if request.user.groups.all.0.name == 'admin' and request.user.groups.all.0.name == 'superuser' or request.user.groups.all.o.name == 'unit_head' %}
+       {% endif %}
+    </div>
+    {% endif %}
+    {% endfor %}
+    <div style="padding-left: 20px;" class="card-body">
+      <blockquote class="blockquote mb-0">
+        {% for p in problem.solution_set.all %}
+        {% if p.problem %}
+        <footer style="color: black;" >{{ p.solution }} <cite title="">&nbsp; &nbsp;
+        {% if p.created_by == request.user %}
+          <a style="font-size: small; font-size: large;" href="{% url 'update' id=p.id%}">Update</a>
+          <a style="font-size: small; color: red; font-size: large;" href="{% url 'delete'  id=p.id %}">Delete</a>
+          {% else %}
+           {% if request.user.groups.all.0.name == 'admin' %}
+          <a style="font-size: small; color: red; font-size: large;" href="{% url 'delete'  id=p.id %}">Delete</a>
+          {% endif %}
+        {% endif %}
+        </cite></footer>
+        {% endif %}
+        {% endfor %}
+      </blockquote>
+    </div>
+  </div>
+  <br>
+  {% endfor %}
+</form>
+{% endblock  %}
