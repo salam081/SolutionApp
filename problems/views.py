@@ -6,6 +6,7 @@ from django.contrib import messages
 from .models import *
 
 # Create your views here.
+# new comments
 def home_view(request):
     context = {}
     return render(request, 'problems/home.html', context)
